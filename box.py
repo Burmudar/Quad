@@ -3,6 +3,50 @@ from PIL import Image, ImageDraw, ImageFont
 class Quad(object):
     pass
 
+class ColorUtil(object):
+    def __init__(self):
+        self._sum = (0.0, 0.0, 0.0)
+        self._count = 0
+
+    @property
+    def sum_r(self):
+        return self._sum[0]
+
+    @property.set
+    def sum_r(self, val):
+        self._sum[0] = val
+
+    @property
+    def sum_g(self):
+        return self._sum[1]
+
+    @property.set
+    def sum_g(self, val):
+        self._sum[1] = val
+
+    @property
+    def sum_b(self):
+        return self._sum[2]
+
+    @property
+    def sum_b(self, val):
+        self._sum[2] = val
+
+    @property
+    def count(self):
+        return self._count
+
+    @property.set
+    def count(self, val):
+        self._count = val
+
+    def add(self, val):
+        self.sum_r += val[0]
+        self.sum_g += val[1]
+        self.sum_b += val[2]
+
+
+
 class Box(object):
     def __init__(self, x0,y0, x1, y1, min_size=50):
         self.width = x1-x0
