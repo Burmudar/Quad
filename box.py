@@ -245,8 +245,8 @@ class Box(object):
 
 
 def create_image_with_text(text='Hello', size=(1400,900), font_size=200):
-    #font = ImageFont.truetype('/Library/Fonts/Microsoft/Gill Sans MT Bold.ttf', font_size)
-    font = ImageFont.truetype('/usr/share/fonts/truetype/ubuntu-font-family/Ubuntu-M.ttf', font_size)
+    font = ImageFont.truetype('/Library/Fonts/Microsoft/Gill Sans MT Bold.ttf', font_size)
+    #font = ImageFont.truetype('/usr/share/fonts/truetype/ubuntu-font-family/Ubuntu-M.ttf', font_size)
     text_img = Image.new(mode='RGB', color='white', size=size)
     canvas = ImageDraw.Draw(text_img)
     text_size = canvas.textsize(text, font)
@@ -297,21 +297,20 @@ def top_down_signature(title,subtitle):
     draw_tree(base,color=(220,20,60),root=root)
     base.save(title+'-'+subtitle+"-top_down.png")
 
-def pic():
-    psize = (540,538)
-    base = Image.new(mode="RGB", color="white", size=psize)
-    filename_prefix = "me"
-    img1 = Image.open(filename_prefix + ".png")
-    root = Box(Point(0,0), Point(psize[0], psize[1]),min_size=5)
+def pic(filename):
+    picture = Image.open(filename)
+    pic_size = picture.size
+    base = Image.new(mode="RGB", color="white", size=pic_size)
+    root = Box(Point(0,0), Point(pic_size[0], pic_size[1]),min_size=5)
     import datetime
     start = datetime.datetime.now()
     print('Start: {}'.format(start))
-    quadrasize(img1,0,0, False, root)
+    quadrasize(picture,0,0, False, root)
     end = datetime.datetime.now()
     print('End: {}'.format(end))
     print('Duration: {}'.format((end-start).total_seconds()))
     draw_tree(base,root=root, no_point=True)
-    base.save(filename_prefix + "-single.png")
+    base.save(filename+ "-single.png")
 
 def single(text):
     base = Image.new(mode='RGB', color='white', size=(1400,900))
@@ -329,6 +328,6 @@ def single(text):
 
 
 if __name__ == '__main__':
-    pic()
+    pic("Frame 2.png")
     #single('Masters')
     #top_down_signature('Andre','Doos')
