@@ -298,9 +298,9 @@ def top_down_signature(title,subtitle):
     base.save(title+'-'+subtitle+"-top_down.png")
 
 def pic():
-    psize = (540,538)
+    psize = (822,855)
     base = Image.new(mode="RGB", color="white", size=psize)
-    filename_prefix = "me"
+    filename_prefix = "nathan"
     img1 = Image.open(filename_prefix + ".png")
     root = Box(Point(0,0), Point(psize[0], psize[1]),min_size=5)
     import datetime
